@@ -1,5 +1,7 @@
 # react-redux-ssr
 react,redux,ssr,express,webpack,babel
 
-# test
-npm run test
+# command
+npm start
+npm run build
+npm run release
