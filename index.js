@@ -4,4 +4,4 @@ obj.hello = function(){
     return 'Hello World';
 };
 
-module.exports = obj;
+export default obj;
