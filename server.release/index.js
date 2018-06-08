@@ -138,7 +138,7 @@ obj.start = function (configJSON) {
         // static wildsAssets served by express.static() for production
         app.use(serverPrefix, _express2.default.static(_path2.default.join(__dirname, publicDictionary)));
 
-        (0, _index2.default)(app);
+        (0, _index2.default)(app, configJSON);
 
         app.listen(port, function () {
             console.log('App (production) is now running on port ' + port + '!');

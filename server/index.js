@@ -105,7 +105,7 @@ obj.start = function(configJSON){
         // static wildsAssets served by express.static() for production
         app.use(serverPrefix, express.static(path.join(__dirname, publicDictionary)));
 
-        serverRoute(app);
+        serverRoute(app, configJSON);
 
         app.listen(port, function () {
             console.log('App (production) is now running on port ' + port + '!');
