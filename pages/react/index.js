@@ -6,11 +6,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import _ from 'lodash';
+import projectConfig from '../../server/config/project';
 
 const Config = require('../../config').default;
 
 if(document.getElementById('app') != null){
-    let basename = '/webapp';
+    let basename = projectConfig.serverPrefix;
     if(window.ssr == 'true'){
         basename += '/ssr';
     }
