@@ -7,10 +7,10 @@ var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 var productionConfig = {
     entry: {
-        react: ['babel-polyfill', './client/page/react']
+        react: ['babel-polyfill', './pages/react']
     },
     output: {
-        filename: './page/[name]/bundle.js',
+        filename: './pages/[name]/bundle.js',
         path: path.resolve(__dirname, './public'),
         publicPath: '/'
     },
@@ -39,9 +39,9 @@ var productionConfig = {
         }]
     },
     plugins: [
-        new CleanWebpackPlugin(['public/page']),
+        new CleanWebpackPlugin(['public/pages']),
         new ExtractTextPlugin({
-            filename: './page/[name]/index.css',
+            filename: './pages/[name]/index.css',
             allChunks: true
         }),
         new UglifyJSPlugin(),

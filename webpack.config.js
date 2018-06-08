@@ -10,10 +10,10 @@ var hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 
 var devConfig = {
     entry: {
-        react: ['babel-polyfill', './client/page/react', hotMiddlewareScript]
+        react: ['babel-polyfill', './pages/react', hotMiddlewareScript]
     },
     output: {
-        filename: './page/[name]/bundle.js',
+        filename: './pages/[name]/bundle.js',
         path: path.resolve(__dirname, './public'),
         publicPath: publicPath
     },

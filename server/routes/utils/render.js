@@ -6,7 +6,6 @@ import version from '../../config/version';
 const minify = require('html-minifier').minify;
 
 const isRelease = process.env.RELEASE;
-const configPath = process.env.CONFIGPATH || '';
 const serverPrefix = projectConfig.serverPrefix;
 const title = 'react-redux-ssr';
 const keywords = 'keywords';
@@ -40,7 +39,7 @@ obj.renderFullPage = function(params){
 
     ${cssHref}
 
-    <link rel="stylesheet" href="${serverPrefix}/page/react/index.css?v=${version}" />
+    <link rel="stylesheet" href="${serverPrefix}/pages/react/index.css?v=${version}" />
 
     <meta name="appBaseUrl" content="${serverPrefix}/" />
     <meta name="format-detection" content="telephone=no"/>
@@ -56,7 +55,6 @@ obj.renderFullPage = function(params){
     
     <script type="text/javascript">
         window.ssr = 'true';
-        window.configPath = '${configPath}';
     </script>
 </head>
 
@@ -79,7 +77,7 @@ obj.renderFullPage = function(params){
     </script>
 
     <script src="${serverPrefix}/vendor.a3e5a454ebdab64af001.js"></script>
-    <script src="${serverPrefix}/page/react/bundle.js?v=${version}" type="text/javascript"></script>
+    <script src="${serverPrefix}/pages/react/bundle.js?v=${version}" type="text/javascript"></script>
 </body>
 </html>
     `

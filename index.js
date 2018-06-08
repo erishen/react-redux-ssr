@@ -6,7 +6,6 @@ obj.hello = function(){
 
 obj.debug = function(configJSON){
     process.env.COMMON = 'common';
-    process.env.CONFIGPATH = 'config';
     var server = require('./server');
     server.start(configJSON);
 };
@@ -15,7 +14,6 @@ obj.release = function(configJSON){
     process.env.NODE_ENV = 'production';
     process.env.RELEASE = true;
     process.env.COMMON = 'common.release';
-    process.env.CONFIGPATH = 'config';
     var server = require('./server.release');
     server.start(configJSON);
 };

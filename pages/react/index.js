@@ -7,10 +7,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import _ from 'lodash';
 
-const configPath = window.configPath;
-const Config = require(`../../../config`).default;
-
-console.log(configPath, Config);
+const Config = require('../../config').default;
 
 if(document.getElementById('app') != null){
     let basename = '/webapp';
@@ -46,6 +43,5 @@ if(document.getElementById('app') != null){
             </Switch>
         </BrowserRouter>
     );
-
-    ReactDOM.render(router, document.getElementById('app'));
+     ReactDOM.render(router, document.getElementById('app'));
 }

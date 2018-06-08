@@ -25,13 +25,9 @@
 
     <? if (env === "production") { ?>
         <? if (react) { ?>
-            <link rel="stylesheet" href="<?= serverPrefix ?>/page/react/index.css?v=<?= version ?>" />
+            <link rel="stylesheet" href="<?= serverPrefix ?>/pages/react/index.css?v=<?= version ?>" />
         <? } ?>
     <? } ?>
-
-    <script type="text/javascript">
-        window.configPath = '<?= configPath ?>';
-    </script>
 </head>
 <body onselectstart="return false" style="overflow-y: auto">
 
