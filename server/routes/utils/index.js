@@ -11,7 +11,7 @@ import React from 'react';
 
 const configPath = process.env.CONFIGPATH || 'config';
 
-var goRoute = function(controller, params){
+var goRoute = function(controller, params, configJSON){
     var router = express.Router();
     var dataArr = config[controller];
     handleRoute(router, util.firstUpperCase(controller), dataArr, params);

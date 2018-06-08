@@ -39,7 +39,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                                                                                                                                                                                                                    */
 
 
-var goRoute = function goRoute(controller, params) {
+var configPath = process.env.CONFIGPATH || 'config';
+
+var goRoute = function goRoute(controller, params, configJSON) {
     var router = _express2.default.Router();
     var dataArr = _config2.default[controller];
     handleRoute(router, _util2.default.firstUpperCase(controller), dataArr, params);
@@ -116,14 +118,14 @@ var getRenderObj = function getRenderObj(controller, params) {
         footer: '../Common/Footer.html',
         url: '../Common/URL.html',
         body: '',
-        title: 'title',
+        title: 'react-redux-ssr',
         keywords: 'keywords',
         description: 'description',
         controller: controller,
         serverPrefix: serverPrefix,
         react: react,
         vue: vue
-    }, _defineProperty(_renderObj, 'controller', ''), _defineProperty(_renderObj, 'action', ''), _defineProperty(_renderObj, 'links', []), _defineProperty(_renderObj, 'scripts', []), _defineProperty(_renderObj, 'urls', []), _renderObj);
+    }, _defineProperty(_renderObj, 'controller', ''), _defineProperty(_renderObj, 'configPath', configPath), _defineProperty(_renderObj, 'action', ''), _defineProperty(_renderObj, 'links', []), _defineProperty(_renderObj, 'scripts', []), _defineProperty(_renderObj, 'urls', []), _renderObj);
     return renderObj;
 };
 

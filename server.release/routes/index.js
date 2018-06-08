@@ -4,13 +4,13 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-exports.default = function (app) {
-    app.use('/', indexRouter());
-    app.use(serverPrefix + '/', indexRouter());
+exports.default = function (app, configJSON) {
+    app.use('/', indexRouter(configJSON));
+    app.use(serverPrefix + '/', indexRouter(configJSON));
+    app.use(serverPrefix + '/ssr', _ssr2.default.goRoute(configJSON));
     app.use(serverPrefix + '/api', _api2.default);
-    app.use(serverPrefix + '/ssr', _ssr2.default);
     app.use(serverPrefix + '/static', _static2.default);
-    app.use(serverPrefix + '/*', indexRouter());
+    app.use(serverPrefix + '/*', indexRouter(configJSON));
 };
 
 var _project = require('../config/project');
@@ -37,7 +37,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var serverPrefix = _project2.default.serverPrefix;
 
-var utilsGoRouter = function utilsGoRouter(controller, params) {
+var utilsGoRouter = function utilsGoRouter(controller, params, configJSON) {
     if (params == undefined) {
         params = {};
     }
@@ -46,11 +46,11 @@ var utilsGoRouter = function utilsGoRouter(controller, params) {
         params.react = true;
     }
 
-    return _utils2.default.goRoute(controller, params);
+    return _utils2.default.goRoute(controller, params, configJSON);
 };
 
-var indexRouter = function indexRouter() {
-    return utilsGoRouter('react');
+var indexRouter = function indexRouter(configJSON) {
+    return utilsGoRouter('react', {}, configJSON);
 };
 
 ;

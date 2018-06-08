@@ -6,7 +6,7 @@ import utilsRouter from './utils';
 
 var serverPrefix = projectConfig.serverPrefix;
 
-var utilsGoRouter = function(controller, params){
+var utilsGoRouter = function(controller, params, configJSON){
     if(params == undefined){
         params = {};
     }
@@ -15,18 +15,18 @@ var utilsGoRouter = function(controller, params){
         params.react = true;
     }
 
-    return utilsRouter.goRoute(controller, params);
+    return utilsRouter.goRoute(controller, params, configJSON);
 };
 
-var indexRouter = function(){
-    return utilsGoRouter('react');
+var indexRouter = function(configJSON){
+    return utilsGoRouter('react', {}, configJSON);
 };
 
-export default function(app){
-    app.use('/', indexRouter());
-    app.use(serverPrefix + '/', indexRouter());
+export default function(app, configJSON){
+    app.use('/', indexRouter(configJSON));
+    app.use(serverPrefix + '/', indexRouter(configJSON));
+    app.use(serverPrefix + '/ssr', ssrRouter.goRoute(configJSON));
     app.use(serverPrefix + '/api', apiRouter);
-    app.use(serverPrefix + '/ssr', ssrRouter);
     app.use(serverPrefix + '/static', staticRouter);
-    app.use(serverPrefix + '/*', indexRouter());
+    app.use(serverPrefix + '/*', indexRouter(configJSON));
 };

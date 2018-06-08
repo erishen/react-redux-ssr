@@ -254,9 +254,5 @@ util.trim = function (str) {
     console.log('trim', str);
     return str.replace(/^\s*|\s*$/g, '');
 };
-util.changeCurrency = function (currency) {
-    if (currency == 'CNY') currency = '￥';
-    return currency;
-};
 
 exports.default = util;
