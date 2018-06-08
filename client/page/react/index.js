@@ -5,8 +5,12 @@ import './index.less';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Config from '../../../common/redux/config';
 import _ from 'lodash';
+
+const configPath = window.configPath;
+const Config = require(`../../../config`).default;
+
+console.log(configPath, Config);
 
 if(document.getElementById('app') != null){
     let basename = '/webapp';
@@ -16,6 +20,7 @@ if(document.getElementById('app') != null){
 
     let content = [];
     let index = 0;
+
     _.each(Config, (item, key)=>{
         //console.log(item, key);
         let action = item.action;

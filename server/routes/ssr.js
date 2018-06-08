@@ -10,8 +10,8 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import _ from 'lodash';
 
-const common = process.env.COMMON;
-const Config = require(`../../${common}/redux/config`).default;
+const configPath = process.env.CONFIGPATH || 'config';
+const Config = require(`../../${configPath}`).default;
 
 let router = express.Router();
 

@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import rootReducer from './reducers'
 import * as actions from './actions';
-import commonStore from '../store';
+import commonStore from '../common/redux/store';
 
 export default class Test extends Component<{}> {
     constructor(props){

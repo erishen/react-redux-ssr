@@ -6,6 +6,7 @@ import version from '../../config/version';
 const minify = require('html-minifier').minify;
 
 const isRelease = process.env.RELEASE;
+const configPath = process.env.CONFIGPATH || '';
 const serverPrefix = projectConfig.serverPrefix;
 const title = 'react-redux-ssr';
 const keywords = 'keywords';
@@ -55,6 +56,7 @@ obj.renderFullPage = function(params){
     
     <script type="text/javascript">
         window.ssr = 'true';
+        window.configPath = '${configPath}';
     </script>
 </head>
 

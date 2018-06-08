@@ -9,6 +9,8 @@ import version from '../../config/version';
 import config from './config';
 import React from 'react';
 
+const configPath = process.env.CONFIGPATH || 'config';
+
 var goRoute = function(controller, params){
     var router = express.Router();
     var dataArr = config[controller];
@@ -97,6 +99,7 @@ var getRenderObj = function(controller, params){
         react: react,
         vue: vue,
         controller: '',
+        configPath: configPath,
         action: '',
         links: [], // 单独页面可增加的 css 链接,
         scripts: [], // 单独页面可增加的 script 链接

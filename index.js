@@ -6,8 +6,7 @@ obj.hello = function(){
 
 obj.debug = function(){
     process.env.COMMON = 'common';
-    require('babel-register');
-    require("babel-polyfill");
+    process.env.CONFIGPATH = 'config';
     require('./server');
 };
 
@@ -15,9 +14,13 @@ obj.release = function(){
     process.env.NODE_ENV = 'production';
     process.env.RELEASE = true;
     process.env.COMMON = 'common.release';
-    require('babel-register');
-    require("babel-polyfill");
+    process.env.CONFIGPATH = 'config';
     require('./server.release');
+};
+
+obj.store = function(){
+    var commonStore = require('./common.release/redux/store').default;
+    return commonStore;
 };
 
 module.exports = obj;
