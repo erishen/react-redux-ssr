@@ -10,7 +10,19 @@ export default {
     test: {
         action: 'test',
         component: Test,
-        preloadedState: { pageNum: 20 }
+        //preloadedState: { pageNum: 20 },
+        apiFunc: function(fetch, req, res){
+            return new Promise((resolve, reject)=> {
+                fetch.get('http://api.github.com/repos/erishen/react-redux-ssr', {}, req, res, true).then((response) => {
+                    console.log('response', response);
+                    resolve({
+                        pageNum: response.stargazers_count
+                    });
+                }).catch((err) => {
+                    reject(err);
+                });
+            });
+        }
     },
     bootstrap: {
         action: 'bootstrap',

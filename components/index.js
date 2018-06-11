@@ -28,8 +28,10 @@ export default class Test extends Component<{}> {
             this.setState(this.store.getState());
         });
 
-        if(!this.preloadedState)
-            this.action.initPageInfo();
+        if(!this.preloadedState){
+            //this.action.initPageInfo();
+            this.action.getGitHub();
+        }
     }
 
     componentWillUnmount() {

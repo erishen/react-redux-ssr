@@ -3,9 +3,10 @@
  */
 
 import { combineReducers } from 'redux';
-
+import _ from 'lodash';
 import {
-    INIT_PAGE, ADD_PAGE_NUM, SUBTRACT_PAGE_NUM
+    INIT_PAGE, ADD_PAGE_NUM, SUBTRACT_PAGE_NUM,
+    GET_GITHUB_SUCCEEDED
 } from './actions';
 
 const pageNum = (state = 1, action) => {
@@ -16,6 +17,8 @@ const pageNum = (state = 1, action) => {
             return state + 1;
         case SUBTRACT_PAGE_NUM:
             return state - 1;
+        case GET_GITHUB_SUCCEEDED:
+            return action.github;
         default:
             return state
     }

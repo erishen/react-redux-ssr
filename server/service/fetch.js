@@ -15,8 +15,47 @@ obj.showJSON = function(res, content){
 }
 
 // flag: true => 不调用 showJSON 方法, false, undefined => 反之
+obj.get = function(url, body, req, res, flag){
+    var prefix = '';
+
+    if(body == undefined){
+        body = {};
+    }
+
+    let agent = new http.Agent({rejectUnauthorized: false});
+    if(url.indexOf('https') != -1)
+        agent = new https.Agent({rejectUnauthorized: false});
+
+    return new Promise((resolve, reject)=> {
+        const cookie = req.headers.cookie;
+
+        fetch(prefix + url, {
+            agent: agent,
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                contentType: 'application/json',
+                cookie: cookie
+            }
+        }).then(res => res.json())
+            .then(json => {
+                if(!flag){
+                    this.showJSON(res, json);
+                }
+                return resolve && resolve(json);
+            })
+            .catch(err => {
+                if(!flag){
+                    this.showJSON(res, err);
+                }
+                return reject && reject(err);
+            });
+    });
+};
+
+// flag: true => 不调用 showJSON 方法, false, undefined => 反之
 obj.post = function(url, body, req, res, flag){
-    var prefix = "";
+    var prefix = '';
 
     if(body == undefined){
         body = {};
@@ -24,13 +63,15 @@ obj.post = function(url, body, req, res, flag){
 
     body = {...req.body};
 
+    let agent = new http.Agent({rejectUnauthorized: false});
+    if(url.indexOf('https') != -1)
+        agent = new https.Agent({rejectUnauthorized: false});
+
     return new Promise((resolve, reject)=> {
-        var cookie = req.headers.cookie;
-        //console.log('req.headers.cookie', cookie);
-        //console.log('req.body', body);
+        const cookie = req.headers.cookie;
 
         fetch(prefix + url, {
-            agent: new http.Agent({rejectUnauthorized: false}),
+            agent: agent,
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify(body),

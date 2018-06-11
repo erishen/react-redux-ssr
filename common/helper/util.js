@@ -21,10 +21,36 @@ var numWordArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
 ];
 
 var util = {};
+util.ajaxGet = function(url, data, sucCallback, errCallback, beforeCallback){
+    var self = this;
+    data.head = {};
+    data.contentType = "json";
+    data = JSON.stringify(data);
+
+    if (typeof window !== 'undefined') {
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: data,
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                if (beforeCallback)
+                    return beforeCallback(xhr);
+                else
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+            },
+            success: function (result) {
+                return sucCallback && sucCallback(result);
+            },
+            error: function (err) {
+                console.log('post_err', err);
+                return errCallback && errCallback(err);
+            }
+        });
+    }
+};
 util.ajaxPost = function(url, data, sucCallback, errCallback, beforeCallback){
     var self = this;
-    //console.log('ajaxPost', url, data);
-
     data.head = {};
     data.contentType = "json";
     data = JSON.stringify(data);
