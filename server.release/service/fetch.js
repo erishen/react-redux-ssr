@@ -29,27 +29,25 @@ obj.showJSON = function (res, content) {
 };
 
 // flag: true => 不调用 showJSON 方法, false, undefined => 反之
-obj.post = function (url, body, req, res, flag) {
+obj.get = function (url, body, req, res, flag) {
     var _this = this;
 
-    var prefix = "";
+    var prefix = '';
 
     if (body == undefined) {
         body = {};
     }
 
-    body = _extends({}, req.body);
+    var agent = new http.Agent({ rejectUnauthorized: false });
+    if (url.indexOf('https') != -1) agent = new https.Agent({ rejectUnauthorized: false });
 
     return new Promise(function (resolve, reject) {
         var cookie = req.headers.cookie;
-        //console.log('req.headers.cookie', cookie);
-        //console.log('req.body', body);
 
         (0, _nodeFetch2.default)(prefix + url, {
-            agent: new http.Agent({ rejectUnauthorized: false }),
-            method: 'POST',
+            agent: agent,
+            method: 'GET',
             credentials: 'include',
-            body: JSON.stringify(body),
             headers: {
                 contentType: 'application/json',
                 cookie: cookie
@@ -64,6 +62,49 @@ obj.post = function (url, body, req, res, flag) {
         }).catch(function (err) {
             if (!flag) {
                 _this.showJSON(res, err);
+            }
+            return reject && reject(err);
+        });
+    });
+};
+
+// flag: true => 不调用 showJSON 方法, false, undefined => 反之
+obj.post = function (url, body, req, res, flag) {
+    var _this2 = this;
+
+    var prefix = '';
+
+    if (body == undefined) {
+        body = {};
+    }
+
+    body = _extends({}, req.body);
+
+    var agent = new http.Agent({ rejectUnauthorized: false });
+    if (url.indexOf('https') != -1) agent = new https.Agent({ rejectUnauthorized: false });
+
+    return new Promise(function (resolve, reject) {
+        var cookie = req.headers.cookie;
+
+        (0, _nodeFetch2.default)(prefix + url, {
+            agent: agent,
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(body),
+            headers: {
+                contentType: 'application/json',
+                cookie: cookie
+            }
+        }).then(function (res) {
+            return res.json();
+        }).then(function (json) {
+            if (!flag) {
+                _this2.showJSON(res, json);
+            }
+            return resolve && resolve(json);
+        }).catch(function (err) {
+            if (!flag) {
+                _this2.showJSON(res, err);
             }
             return reject && reject(err);
         });

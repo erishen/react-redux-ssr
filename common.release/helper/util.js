@@ -23,10 +23,33 @@ var randomArray = [];
 var numWordArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', '?', '/'];
 
 var util = {};
+util.ajaxGet = function (url, data, sucCallback, errCallback, beforeCallback) {
+    var self = this;
+    data.head = {};
+    data.contentType = "json";
+    data = JSON.stringify(data);
+
+    if (typeof window !== 'undefined') {
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: data,
+            dataType: 'json',
+            beforeSend: function beforeSend(xhr) {
+                if (beforeCallback) return beforeCallback(xhr);else xhr.setRequestHeader('Content-Type', 'application/json');
+            },
+            success: function success(result) {
+                return sucCallback && sucCallback(result);
+            },
+            error: function error(err) {
+                console.log('post_err', err);
+                return errCallback && errCallback(err);
+            }
+        });
+    }
+};
 util.ajaxPost = function (url, data, sucCallback, errCallback, beforeCallback) {
     var self = this;
-    //console.log('ajaxPost', url, data);
-
     data.head = {};
     data.contentType = "json";
     data = JSON.stringify(data);
