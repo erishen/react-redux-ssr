@@ -18,7 +18,7 @@ obj.renderFullPage = function(params){
     let { preloadedState } = params;
 
     if(preloadedState == undefined)
-        preloadedState = '';
+        preloadedState = {};
 
     let cssHref = '';
     switch (action){
