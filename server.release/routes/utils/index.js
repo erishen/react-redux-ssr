@@ -39,6 +39,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                                                                                                                                                                                                                    */
 
 
+var configName = process.env.CONFIGNAME;
+
 var goRoute = function goRoute(controller, params, configJSON) {
     var router = _express2.default.Router();
     var dataArr = _config2.default[controller];
@@ -120,6 +122,7 @@ var getRenderObj = function getRenderObj(controller, params) {
         description: 'description',
         controller: controller,
         serverPrefix: serverPrefix,
+        configName: configName,
         react: react,
         vue: vue
     }, _defineProperty(_renderObj, 'controller', ''), _defineProperty(_renderObj, 'action', ''), _defineProperty(_renderObj, 'links', []), _defineProperty(_renderObj, 'scripts', []), _defineProperty(_renderObj, 'urls', []), _renderObj);
