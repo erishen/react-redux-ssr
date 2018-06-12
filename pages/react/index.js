@@ -45,5 +45,5 @@ if(document.getElementById('app') != null){
             </Switch>
         </BrowserRouter>
     );
-     ReactDOM.render(router, document.getElementById('app'));
+    ReactDOM.render(router, document.getElementById('app'));
 }

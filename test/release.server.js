@@ -1,4 +1,4 @@
 import Index from '../index';
-import Config from '../config';
+import Config from '../config/test';
 
-Index.release(Config);
+Index.release(Config, 'test');
