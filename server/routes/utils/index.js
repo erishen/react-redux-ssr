@@ -9,6 +9,8 @@ import version from '../../config/version';
 import config from './config';
 import React from 'react';
 
+const configName = process.env.CONFIGNAME;
+
 var goRoute = function(controller, params, configJSON){
     var router = express.Router();
     var dataArr = config[controller];
@@ -93,6 +95,7 @@ var getRenderObj = function(controller, params){
         description: 'description',
         controller: controller,
         serverPrefix: serverPrefix,
+        configName: configName,
         react: react,
         vue: vue,
         controller: '',

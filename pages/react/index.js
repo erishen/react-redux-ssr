@@ -8,7 +8,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import _ from 'lodash';
 import projectConfig from '../../server/config/project';
 
-const Config = require('../../config').default;
+const test = window.configName;
+const Config = require('../../config/' + test + '.js').default;
 
 if(document.getElementById('app') != null){
     let basename = projectConfig.serverPrefix;

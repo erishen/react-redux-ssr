@@ -45,7 +45,11 @@ var productionConfig = {
             allChunks: true
         }),
         new UglifyJSPlugin(),
-        new OptimizeCssAssetsPlugin()
+        new OptimizeCssAssetsPlugin(),
+        new webpack.ContextReplacementPlugin(
+            /..[\/\\]..[\/\\]config/,
+            false
+        )
     ]
 };
 
