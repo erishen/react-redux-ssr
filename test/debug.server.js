@@ -1,4 +1,4 @@
 import Index from '../index';
-import Config from '../config/test';
+import Config from '../config';
 
-Index.debug(Config, 'test');
+Index.debug(Config, 'index');

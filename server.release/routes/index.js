@@ -8,8 +8,8 @@ exports.default = function (app, configJSON) {
     app.use('/', indexRouter(configJSON));
     app.use(serverPrefix + '/', indexRouter(configJSON));
     app.use(serverPrefix + '/ssr', _ssr2.default.goRoute(configJSON));
+    app.use(serverPrefix + '/static', _static2.default.goRoute(configJSON));
     app.use(serverPrefix + '/api', _api2.default);
-    app.use(serverPrefix + '/static', _static2.default);
     app.use(serverPrefix + '/*', indexRouter(configJSON));
 };
 

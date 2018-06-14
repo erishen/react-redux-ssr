@@ -16,7 +16,13 @@ let obj = {};
 obj.renderFullPage = function(params){
 
     const { component, action } = params;
-    let { preloadedState } = params;
+    let { preloadedState, ssr, isStatic } = params;
+
+    if(ssr == undefined)
+        ssr = 'true';
+
+    if(isStatic == undefined)
+        isStatic = 'false';
 
     if(preloadedState == undefined)
         preloadedState = {};
@@ -55,7 +61,8 @@ obj.renderFullPage = function(params){
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     
     <script type="text/javascript">
-        window.ssr = 'true';
+        window.ssr = '${ssr}';
+        window.isStatic = '${isStatic}';
         window.configName = '${configName}';
     </script>
 </head>

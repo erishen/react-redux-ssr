@@ -26,6 +26,10 @@ if(document.getElementById('app') != null){
         let component = item.component;
         let path = '/' + action;
 
+        if(window.isStatic == 'true'){
+            path += '.html';
+        }
+
         if(index == 0){
             content.push(
                 <Route key={key+index} exact path="/" component={component} />

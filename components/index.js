@@ -20,7 +20,7 @@ export default class Test extends Component<{}> {
     }
 
     componentWillMount() {
-        console.log('state', this.state);
+        //console.log('state', this.state);
     }
 
     componentDidMount() {
@@ -28,7 +28,7 @@ export default class Test extends Component<{}> {
             this.setState(this.store.getState());
         });
 
-        if(!this.preloadedState){
+        if(!this.preloadedState || window.isStatic == 'true'){
             //this.action.initPageInfo();
             this.action.getGitHub();
         }
