@@ -5,3 +5,6 @@ react,redux,ssr,express,webpack,babel
 npm start
 npm run build
 npm run release
+
+# publish
+npm publish
