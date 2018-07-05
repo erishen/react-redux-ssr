@@ -1,6 +1,6 @@
 {
   "name": "react-redux-ssr",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "react,redux,ssr,express,webpack,babel",
   "main": "index.js",
   "config": {
@@ -11,8 +11,9 @@
     "release": "node test/release.js",
     "build": "webpack --config webpack.production.config.js -p && gulp && babel server -d server.release && babel common -d common.release"
   },
+  "preferGlobal": "true",
   "bin": {
-    "rrs": "./bin/rrs.js"
+    "rrs": "./bin/rrs"
   },
   "repository": {
     "type": "git",

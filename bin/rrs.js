@@ -1,8 +1,6 @@
 #!/usr/bin/env node
-/**
- * Created by lei_sun on 2018/7/4.
- */
 
+'use strict';
 console.log('rrs start');
 
 const spawn = require('cross-spawn');
