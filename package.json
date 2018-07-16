@@ -1,6 +1,6 @@
 {
   "name": "react-redux-ssr",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "react,redux,ssr,express,webpack,babel",
   "main": "index.js",
   "config": {
@@ -13,7 +13,7 @@
   },
   "preferGlobal": "true",
   "bin": {
-    "rrs": "./bin/rrs.js"
+    "rrs": "./bin/rrs"
   },
   "repository": {
     "type": "git",
