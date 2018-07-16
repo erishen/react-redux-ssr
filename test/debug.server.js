@@ -1,6 +1,7 @@
-import path from 'path';
-import Index from '../index';
+const path = require('path');
+const Index = require('../index');
 
 console.log(__dirname, path.resolve(__dirname, '../config'));
 const Config = require(path.resolve(__dirname, '../config')).default;
+
 Index.debug(Config, 'index');
