@@ -10,7 +10,7 @@ console.log('rrs_args', args);
 
 const result = spawn.sync(
     'node',
-    [].concat(require.resolve('../test/release.js')),
+    [].concat(require.resolve('../test/debug.js')),
     { stdio: 'inherit' }
 );
 
