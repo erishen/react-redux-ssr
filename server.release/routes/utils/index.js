@@ -43,7 +43,7 @@ var isModule = parseInt(process.env.isModule, 10);
 var configName = process.env.CONFIGNAME;
 
 var config = null;
-console.log('isModule3', isModule);
+//console.log('isModule3', isModule);
 if (isModule === 1) {
     // 作为第三方 node_modules 发布时使用
     config = require(_path2.default.resolve(__dirname, '../../../../../config/' + configName + '.js')).default;
@@ -52,7 +52,7 @@ if (isModule === 1) {
     config = require(_path2.default.resolve(__dirname, '../../../config/' + configName + '.js')).default;
 }
 
-console.log('config', config);
+//console.log('config', config);
 
 var goRoute = function goRoute(controller, params, configJSON) {
     var router = _express2.default.Router();
