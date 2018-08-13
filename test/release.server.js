@@ -1,14 +1,16 @@
 const path = require('path');
 const Index = require('../index');
-const configPos = process.env.CONFIGPOS;
 
-console.log('configPos', configPos);
+let Config = null;
 
-let Config = require(path.resolve(__dirname, '../config')).default;
-
-if(configPos != 'LOCAL'){
+if(1){ // 作为第三方 node_modules 发布时使用
     Config = require(path.resolve(__dirname, '../../../config')).default;
+}
+else { // 作为本地测试时使用
+    Config = require(path.resolve(__dirname, '../config')).default;
 }
 
 console.log('Config', Config);
-Index.release(Config, 'index');
+
+if(Config)
+    Index.release(Config, 'index');
