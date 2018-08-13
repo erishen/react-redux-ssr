@@ -136,7 +136,13 @@ obj.start = function (configJSON) {
         }
     } else {
         // static wildsAssets served by express.static() for production
-        app.use(serverPrefix, _express2.default.static(_path2.default.join(__dirname, publicDictionary)));
+        if (1) {
+            // 作为第三方 node_modules 发布时使用
+            app.use(serverPrefix, _express2.default.static(_path2.default.join(__dirname, '../../' + publicDictionary)));
+        } else {
+            // 作为本地测试时使用
+            app.use(serverPrefix, _express2.default.static(_path2.default.join(__dirname, publicDictionary)));
+        }
 
         (0, _index2.default)(app, configJSON);
 

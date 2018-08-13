@@ -103,7 +103,12 @@ obj.start = function(configJSON){
         }
     } else {
         // static wildsAssets served by express.static() for production
-        app.use(serverPrefix, express.static(path.join(__dirname, publicDictionary)));
+        if(1){ // 作为第三方 node_modules 发布时使用
+            app.use(serverPrefix, express.static(path.join(__dirname, '../../' + publicDictionary)));
+        }
+        else { // 作为本地测试时使用
+            app.use(serverPrefix, express.static(path.join(__dirname, publicDictionary)));
+        }
 
         serverRoute(app, configJSON);
 
