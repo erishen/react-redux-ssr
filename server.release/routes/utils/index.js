@@ -41,10 +41,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 if (1) {
     // 作为第三方 node_modules 发布时使用
-    config = require(_path2.default.resolve(__dirname, '../../../config')).default;
+    config = require(_path2.default.resolve(__dirname, '../../../../../config')).default;
 } else {
     // 作为本地测试时使用
-    config = require(_path2.default.resolve(__dirname, '../config')).default;
+    config = require(_path2.default.resolve(__dirname, '../../../config')).default;
 }
 
 var configName = process.env.CONFIGNAME;

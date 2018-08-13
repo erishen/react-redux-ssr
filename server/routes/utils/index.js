@@ -10,10 +10,10 @@ import version from '../../config/version';
 import React from 'react';
 
 if(1){ // 作为第三方 node_modules 发布时使用
-    config = require(path.resolve(__dirname, '../../../config')).default;
+    config = require(path.resolve(__dirname, '../../../../../config')).default;
 }
 else { // 作为本地测试时使用
-    config = require(path.resolve(__dirname, '../config')).default;
+    config = require(path.resolve(__dirname, '../../../config')).default;
 }
 
 const configName = process.env.CONFIGNAME;
