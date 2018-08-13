@@ -42,7 +42,7 @@ var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var isModule = process.env.isModule;
+var isModule = parseInt(process.env.isModule, 10);
 
 var obj = {};
 

@@ -1,6 +1,6 @@
 const path = require('path');
 const Index = require('../index');
-const isModule = process.env.isModule;
+const isModule = parseInt(process.env.isModule, 10);
 
 let Config = null;
 

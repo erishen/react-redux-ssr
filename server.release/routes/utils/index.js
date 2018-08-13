@@ -39,7 +39,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                                                                                                                                                                                                                    */
 
 
-var isModule = process.env.isModule;
+var isModule = parseInt(process.env.isModule, 10);
 var configName = process.env.CONFIGNAME;
 
 var config = null;

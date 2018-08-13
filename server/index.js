@@ -9,7 +9,7 @@ import projectConfig from './config/project';
 import serverRoute from './routes/index';
 import bodyParser from 'body-parser';
 
-const isModule = process.env.isModule;
+const isModule = parseInt(process.env.isModule, 10);
 
 var obj = {};
 

@@ -8,7 +8,7 @@ import util from '../../helper/util';
 import projectConfig from '../../config/project';
 import version from '../../config/version';
 import React from 'react';
-const isModule = process.env.isModule;
+const isModule = parseInt(process.env.isModule, 10);
 const configName = process.env.CONFIGNAME;
 
 let config = null;
