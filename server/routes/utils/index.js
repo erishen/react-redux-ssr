@@ -2,12 +2,19 @@
  * Created by lei_sun on 2018/2/11.
  */
 import express from 'express';
+import path from 'path';
 import _ from 'lodash';
 import util from '../../helper/util';
 import projectConfig from '../../config/project';
 import version from '../../config/version';
-import config from './config';
 import React from 'react';
+
+if(1){ // 作为第三方 node_modules 发布时使用
+    config = require(path.resolve(__dirname, '../../../config')).default;
+}
+else { // 作为本地测试时使用
+    config = require(path.resolve(__dirname, '../config')).default;
+}
 
 const configName = process.env.CONFIGNAME;
 
