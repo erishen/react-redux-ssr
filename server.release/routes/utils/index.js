@@ -8,6 +8,10 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
 var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
@@ -24,10 +28,6 @@ var _version = require('../../config/version');
 
 var _version2 = _interopRequireDefault(_version);
 
-var _config = require('./config');
-
-var _config2 = _interopRequireDefault(_config);
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -39,11 +39,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                                                                                                                                                                                                                    */
 
 
+if (1) {
+    // 作为第三方 node_modules 发布时使用
+    config = require(_path2.default.resolve(__dirname, '../../../config')).default;
+} else {
+    // 作为本地测试时使用
+    config = require(_path2.default.resolve(__dirname, '../config')).default;
+}
+
 var configName = process.env.CONFIGNAME;
 
 var goRoute = function goRoute(controller, params, configJSON) {
     var router = _express2.default.Router();
-    var dataArr = _config2.default[controller];
+    var dataArr = config[controller];
     handleRoute(router, _util2.default.firstUpperCase(controller), dataArr, params);
     return router;
 };

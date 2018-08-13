@@ -1,6 +1,6 @@
 {
   "name": "react-redux-ssr",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "react,redux,ssr,express,webpack,babel",
   "main": "index.js",
   "config": {
@@ -9,7 +9,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=dev supervisor -i server/views -w server,common,config -e node,js,html test/debug.js",
     "release": "node test/release.js",
-    "build": "webpack --config webpack.production.config.js -p && gulp && babel server -d server.release && babel common -d common.release"
+    "build": "webpack --config webpack.production.config.js -p && gulp && babel server -d server.release && babel common -d common.release",
+    "clean": "rm -fr common.release && rm -fr dest && rm -fr server.release && rm -fr public/page"
   },
   "preferGlobal": "true",
   "bin": {
