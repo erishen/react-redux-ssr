@@ -24,6 +24,7 @@ export default {
             });
         }
     },
+    /*
     bootstrap: {
         action: 'bootstrap',
         component: Bootstrap
@@ -32,4 +33,5 @@ export default {
         action: 'lazyload',
         component: Lazyload
     }
+    */
 }
