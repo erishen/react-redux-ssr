@@ -9,6 +9,8 @@ import projectConfig from './config/project';
 import serverRoute from './routes/index';
 import bodyParser from 'body-parser';
 
+const isModule = process.env.isModule;
+
 var obj = {};
 
 obj.start = function(configJSON){
@@ -103,7 +105,8 @@ obj.start = function(configJSON){
         }
     } else {
         // static wildsAssets served by express.static() for production
-        if(1){ // 作为第三方 node_modules 发布时使用
+        console.log('isModule2', isModule);
+        if(isModule === 1){ // 作为第三方 node_modules 发布时使用
             app.use(serverPrefix, express.static(path.join(__dirname, '../../' + publicDictionary)));
         }
         else { // 作为本地测试时使用

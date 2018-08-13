@@ -42,6 +42,8 @@ var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var isModule = process.env.isModule;
+
 var obj = {};
 
 obj.start = function (configJSON) {
@@ -136,7 +138,8 @@ obj.start = function (configJSON) {
         }
     } else {
         // static wildsAssets served by express.static() for production
-        if (1) {
+        console.log('isModule2', isModule);
+        if (isModule === 1) {
             // 作为第三方 node_modules 发布时使用
             app.use(serverPrefix, _express2.default.static(_path2.default.join(__dirname, '../../' + publicDictionary)));
         } else {
