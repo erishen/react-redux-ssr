@@ -39,15 +39,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                                                                                                                                                                                                                    */
 
 
+var configName = process.env.CONFIGNAME;
+
+var config = null;
 if (1) {
     // 作为第三方 node_modules 发布时使用
-    config = require(_path2.default.resolve(__dirname, '../../../../../config')).default;
+    config = require(_path2.default.resolve(__dirname, '../../../../../config/' + configName + '.js')).default;
 } else {
     // 作为本地测试时使用
-    config = require(_path2.default.resolve(__dirname, '../../../config')).default;
+    config = require(_path2.default.resolve(__dirname, '../../../config/' + configName + '.js')).default;
 }
 
-var configName = process.env.CONFIGNAME;
+console.log('config', config);
 
 var goRoute = function goRoute(controller, params, configJSON) {
     var router = _express2.default.Router();

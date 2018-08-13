@@ -9,14 +9,17 @@ import projectConfig from '../../config/project';
 import version from '../../config/version';
 import React from 'react';
 
+const configName = process.env.CONFIGNAME;
+
+let config = null;
 if(1){ // 作为第三方 node_modules 发布时使用
-    config = require(path.resolve(__dirname, '../../../../../config')).default;
+    config = require(path.resolve(__dirname, '../../../../../config/' + configName + '.js')).default;
 }
 else { // 作为本地测试时使用
-    config = require(path.resolve(__dirname, '../../../config')).default;
+    config = require(path.resolve(__dirname, '../../../config/' + configName + '.js')).default;
 }
 
-const configName = process.env.CONFIGNAME;
+console.log('config', config);
 
 var goRoute = function(controller, params, configJSON){
     var router = express.Router();
