@@ -16,9 +16,8 @@ obj.release = function(configJSON, configName){
 
     if(!isDebug){
         process.env.NODE_ENV = 'production';
-        process.env.RELEASE = true;
     }
-
+    process.env.RELEASE = true;
     process.env.COMMON = 'common.release';
     process.env.CONFIGNAME = configName || 'index';
     var server = require('./server.release');
