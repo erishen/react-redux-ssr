@@ -13,7 +13,7 @@ const configName = process.env.CONFIGNAME;
 
 let config = null;
 //console.log('isModule3', isModule);
-if(isModule === 1){ // 作为第三方 node_modules 发布时使用
+if(isModule){ // 作为第三方 node_modules 发布时使用
     config = require(path.resolve(__dirname, '../../../../../config/' + configName + '.js')).default;
 }
 else { // 作为本地测试时使用

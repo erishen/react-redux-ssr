@@ -79,21 +79,39 @@ obj.start = function (configJSON) {
         var webpack = require('webpack');
         var webpackDevMiddleware = require('webpack-dev-middleware');
         var webpackHotMiddleware = require('webpack-hot-middleware');
-        var webpackDevConfig = require('../webpack.config.js');
-        var compiler = webpack(webpackDevConfig);
 
-        // attach to the compiler & the server
-        app.use(serverPrefix, webpackDevMiddleware(compiler, {
-            // public path should be the same with webpack config
-            publicPath: webpackDevConfig.output.publicPath,
-            noInfo: true,
-            stats: {
-                colors: true
-            }
-        }));
-        app.use(webpackHotMiddleware(compiler));
+        var webpackDevConfig = null;
 
-        app.use(serverPrefix, _express2.default.static(_path2.default.join(__dirname, publicDictionary)));
+        if (isModule) {
+            // 作为第三方 node_modules 发布时使用
+            webpackDevConfig = require(_path2.default.resolve(__dirname, '../../../webpack.config.js'));
+        } else {
+            // 作为本地测试时使用
+            webpackDevConfig = require(_path2.default.resolve(__dirname, '../webpack.config.js'));
+        }
+
+        if (webpackDevConfig) {
+            var compiler = webpack(webpackDevConfig);
+
+            // attach to the compiler & the server
+            app.use(serverPrefix, webpackDevMiddleware(compiler, {
+                // public path should be the same with webpack config
+                publicPath: webpackDevConfig.output.publicPath,
+                noInfo: true,
+                stats: {
+                    colors: true
+                }
+            }));
+            app.use(webpackHotMiddleware(compiler));
+        }
+
+        if (isModule) {
+            // 作为第三方 node_modules 发布时使用
+            app.use(serverPrefix, _express2.default.static(_path2.default.join(__dirname, '../../' + publicDictionary)));
+        } else {
+            // 作为本地测试时使用
+            app.use(serverPrefix, _express2.default.static(_path2.default.join(__dirname, publicDictionary)));
+        }
 
         (0, _index2.default)(app, configJSON);
 
@@ -139,7 +157,7 @@ obj.start = function (configJSON) {
     } else {
         // static wildsAssets served by express.static() for production
         //console.log('isModule2', isModule);
-        if (isModule === 1) {
+        if (isModule) {
             // 作为第三方 node_modules 发布时使用
             app.use(serverPrefix, _express2.default.static(_path2.default.join(__dirname, '../../' + publicDictionary)));
         } else {
