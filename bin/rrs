@@ -8,8 +8,13 @@ const args = process.argv.slice(2);
 
 console.log('rrs_args', args);
 
+let command = ' cross-env isDebug=0 ';
+if(args[0] == 'debug'){
+    command = ' cross-env isDebug=1 ';
+}
+
 const result = spawn.sync(
-    'node',
+    command + ' node ',
     [].concat(require.resolve('../test/release.js')),
     { stdio: 'inherit' }
 );
